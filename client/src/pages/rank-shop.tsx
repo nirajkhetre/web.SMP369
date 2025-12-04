@@ -46,7 +46,7 @@ export default function RankShop() {
             const mockPaymentId = "simulated_pay_" + Date.now();
             const mockOrderId = "simulated_order_" + Date.now();
 
-            const response = await fetch("https://nikaixeqpk.execute-api.us-east-1.amazonaws.com/default/paymentUpdateHandler", {
+            const response = await fetch("/api/simulate-payment", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

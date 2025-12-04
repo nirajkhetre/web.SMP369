@@ -1,0 +1,6 @@
+client/src/pages/blog-post.tsx(3,35): error TS2307: Cannot find module '@/components/ui/card' or its corresponding type declarations.
+client/src/pages/blog-post.tsx(4,24): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+client/src/pages/blog-post.tsx(5,26): error TS2307: Cannot find module '@/components/ui/skeleton' or its corresponding type declarations.
+client/src/pages/blog-post.tsx(8,40): error TS2307: Cannot find module '@/lib/blog-data' or its corresponding type declarations.
+client/src/pages/blog-post.tsx(9,21): error TS2307: Cannot find module '@/components/seo' or its corresponding type declarations.
+client/src/pages/blog-post.tsx(13,18): error TS18047: 'params' is possibly 'null'.

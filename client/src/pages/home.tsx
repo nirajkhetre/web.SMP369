@@ -17,6 +17,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useToast } from "@/hooks/use-toast";
 import {
   Server,
@@ -48,7 +55,9 @@ import {
   Menu,
   X,
   ShoppingCart,
+  MessageSquare,
 } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 interface ServerInfo {
   name: string;
@@ -139,10 +148,10 @@ const faqs = [
 ];
 
 const screenshots = [
-  { title: "Spawn Area", description: "Our beautiful custom spawn" },
-  { title: "Community Builds", description: "Amazing player creations" },
-  { title: "PvP Arena", description: "Battle other players" },
-  { title: "Custom Terrain", description: "Explore unique landscapes" },
+  { title: "Spawn Area", description: "Our beautiful custom spawn", image: "/screenshot1.png" },
+  { title: "Community Builds", description: "Amazing player creations", image: "/screenshot2.png" },
+  { title: "PvP Arena", description: "Battle other players", image: "/screenshot3.png" },
+  { title: "Custom Terrain", description: "Explore unique landscapes", image: "/screenshot4.png" },
 ];
 
 function JoinServerModal({
@@ -183,9 +192,9 @@ function JoinServerModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl bg-card border-primary/30 glow-green" data-testid="modal-join-server">
+      <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto bg-card border-primary/30 glow-green" data-testid="modal-join-server">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-gradient-main text-center" data-testid="text-modal-title">
+          <DialogTitle className="text-2xl sm:text-3xl font-bold text-gradient-main text-center" data-testid="text-modal-title">
             Join 369-MC SMP
           </DialogTitle>
         </DialogHeader>
@@ -193,10 +202,10 @@ function JoinServerModal({
         <div className="space-y-6 py-4">
           <div className="grid gap-4">
             <div className="p-4 rounded-md bg-muted/50 border border-border" data-testid="section-java-ip">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Java Edition IP</p>
-                  <p className="text-xl font-mono font-bold text-primary" data-testid="text-java-ip">
+                  <p className="text-xl font-mono font-bold text-primary break-all" data-testid="text-java-ip">
                     {serverInfo.ip}
                   </p>
                 </div>
@@ -205,6 +214,7 @@ function JoinServerModal({
                   variant="outline"
                   onClick={() => copyToClipboard(serverInfo.ip, "ip")}
                   data-testid="button-copy-ip"
+                  className="w-full sm:w-10"
                 >
                   {copiedIp ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
                 </Button>
@@ -212,10 +222,10 @@ function JoinServerModal({
             </div>
 
             <div className="p-4 rounded-md bg-muted/50 border border-border" data-testid="section-bedrock-port">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Bedrock Edition Port</p>
-                  <div className="flex items-center gap-2 flex-wrap">
+                  <div className="flex flex-col sm:flex-row items-center gap-2 flex-wrap justify-center sm:justify-start">
                     <p className="text-xl font-mono font-bold text-chart-2" data-testid="text-bedrock-port">
                       {serverInfo.bedrockPort}
                     </p>
@@ -229,6 +239,7 @@ function JoinServerModal({
                   variant="outline"
                   onClick={() => copyToClipboard(serverInfo.bedrockPort, "port")}
                   data-testid="button-copy-port"
+                  className="w-full sm:w-10"
                 >
                   {copiedPort ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
                 </Button>
@@ -351,77 +362,81 @@ function TableOfContents({ activeSection }: { activeSection: string }) {
 
 function HeroSection({ onJoinClick, serverInfo }: { onJoinClick: () => void; serverInfo: ServerInfo }) {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-grid-pattern" data-testid="section-hero">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <SEO
+        title="369-MC SMP - Best Minecraft Survival Server | No Pay-to-Win"
+        description="Join 369-MC SMP, the ultimate Minecraft survival server with custom terrain, skills, and a fair no pay-to-win economy. Play on Java & Bedrock!"
+        keywords={["minecraft server", "survival smp", "best minecraft server", "no pay to win", "custom terrain", "minecraft india", "369 smp", "smp369"]}
+      />
 
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-chart-2/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
-      </div>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-grid-pattern" data-testid="section-hero">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="w-32 h-32 mx-auto mb-8 relative" data-testid="logo-container">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl rotate-6 opacity-50" />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl -rotate-3 opacity-75" />
-          <div className="relative w-full h-full bg-card rounded-2xl flex items-center justify-center border border-primary/30 glow-green">
-            <img src="/logo.png" alt="369-MC Logo" className="w-full h-full object-contain p-2" data-testid="image-logo" />
-          </div>
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-chart-2/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-4" data-testid="heading-main">
-          <span className="text-gradient-main">369-MC SMP</span>
-        </h1>
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          <div className="w-32 h-32 mx-auto mb-8 relative" data-testid="logo-container">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl rotate-6 opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl -rotate-3 opacity-75" />
+            <div className="relative w-full h-full bg-card rounded-2xl flex items-center justify-center border border-primary/30 glow-green">
+              <img src="/logo.png" alt="369-MC Logo" className="w-full h-full object-contain p-2" data-testid="image-logo" />
+            </div>
+          </div>
 
-        <p className="text-xl md:text-2xl text-muted-foreground mb-4" data-testid="text-subtitle">
-          Premium Minecraft Survival Experience
-        </p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4" data-testid="heading-main">
+            <span className="text-gradient-main">369-MC SMP</span>
+          </h1>
 
-        <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed" data-testid="text-description">
-          Welcome to 369-MC SMP, the ultimate Minecraft survival multiplayer server where adventure awaits around every corner.
-          Build incredible structures, form alliances with fellow players, explore vast custom terrains, and create memories
-          that last a lifetime. With our dedicated community, regular events, and unique features, your Minecraft journey
-          starts here.
-        </p>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-4" data-testid="text-subtitle">
+            Premium Minecraft Survival Experience
+          </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button
-            size="lg"
-            onClick={onJoinClick}
-            className="text-lg px-12 py-6 glow-green animate-pulse-glow"
-            data-testid="button-join-server"
-          >
-            <Play className="mr-2 h-5 w-5" />
-            Join Server
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="text-lg px-8 py-6"
-            asChild
-          >
-            <a href="#features" data-testid="link-explore-features">
-              Explore Features
-              <ChevronRight className="ml-2 h-5 w-5" />
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed" data-testid="text-description">
+            Welcome to 369-MC SMP, the ultimate Minecraft survival multiplayer server where adventure awaits around every corner.
+            Build incredible structures, form alliances with fellow players, explore vast custom terrains, and create memories
+            that last a lifetime. With our dedicated community, regular events, and unique features, your Minecraft journey
+            starts here.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
+            <Button
+              size="lg"
+              onClick={onJoinClick}
+              className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-12 py-6 glow-green animate-pulse-glow"
+              data-testid="button-join-server"
+            >
+              <Play className="mr-2 h-5 w-5" />
+              Join Server
+            </Button>
+            <a href="https://discord.gg/cMUbXXjh" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="text-base sm:text-lg px-8 sm:px-12 py-6 w-full bg-[#5865F2]/10 hover:bg-[#5865F2]/20 text-[#5865F2] border-[#5865F2]/50 shadow-lg shadow-[#5865F2]/10 hover:shadow-[#5865F2]/20 transition-all duration-300">
+                <MessageSquare className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                Join Discord
+              </Button>
             </a>
-          </Button>
-        </div>
+          </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" data-testid="status-bar">
-          <div className="flex items-center gap-2" data-testid="status-online">
-            <div className={`w-2 h-2 rounded-full animate-pulse ${serverInfo.status === 'online' ? 'bg-status-online' : 'bg-status-offline'}`} />
-            <span>Server {serverInfo.status === 'online' ? 'Online' : 'Offline'}</span>
-          </div>
-          <div className="flex items-center gap-2" data-testid="status-players">
-            <Users className="h-4 w-4" />
-            <span>{serverInfo.playerCount}+ Active Players</span>
-          </div>
-          <div className="flex items-center gap-2" data-testid="status-platforms">
-            <Globe className="h-4 w-4" />
-            <span>Java & Bedrock</span>
+          <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" data-testid="status-bar">
+            <div className="flex items-center gap-2" data-testid="status-online">
+              <div className={`w-2 h-2 rounded-full animate-pulse ${serverInfo.status === 'online' ? 'bg-status-online' : 'bg-status-offline'}`} />
+              <span>Server {serverInfo.status === 'online' ? 'Online' : 'Offline'}</span>
+            </div>
+            <div className="flex items-center gap-2" data-testid="status-players">
+              <Users className="h-4 w-4" />
+              <span>{serverInfo.playerCount}+ Active Players</span>
+            </div>
+            <div className="flex items-center gap-2" data-testid="status-platforms">
+              <Globe className="h-4 w-4" />
+              <span>Java & Bedrock</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
 
@@ -528,25 +543,38 @@ function ScreenshotsSection() {
           <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-screenshots">Screenshots</h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          {screenshots.map((screenshot, index) => (
-            <Card key={index} className="overflow-hidden group hover-elevate" data-testid={`card-screenshot-${index}`}>
-              <div className="aspect-video bg-gradient-to-br from-muted to-muted/50 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <Image className="h-12 w-12 text-muted-foreground/30 mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground/50">Screenshot {index + 1}</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="font-semibold text-white" data-testid={`text-screenshot-title-${index}`}>{screenshot.title}</p>
-                    <p className="text-sm text-gray-300" data-testid={`text-screenshot-desc-${index}`}>{screenshot.description}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
+        <div className="mx-auto max-w-5xl px-4">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {screenshots.map((screenshot, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
+                  <Card className="overflow-hidden group hover-elevate h-full" data-testid={`card-screenshot-${index}`}>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={screenshot.image}
+                        alt={screenshot.title}
+                        className="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <p className="font-semibold text-white" data-testid={`text-screenshot-title-${index}`}>{screenshot.title}</p>
+                          <p className="text-sm text-gray-300" data-testid={`text-screenshot-desc-${index}`}>{screenshot.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
       </div>
     </section>
@@ -776,12 +804,14 @@ function RanksSection() {
           {ranks.map((rank, index) => (
             <Card key={index} className="hover-elevate border-primary/20" data-testid={`card-rank-${index}`}>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold mb-2 text-primary" data-testid={`text-rank-name-${index}`}>{rank.name}</h3>
-                <p className="text-sm font-mono text-muted-foreground mb-4 bg-muted p-2 rounded" data-testid={`text-rank-cost-${index}`}>{rank.cost}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-primary" data-testid={`text-rank-name-${index}`}>{rank.name}</h3>
+                  <Badge variant="outline" className="text-xs" data-testid={`badge-rank-cost-${index}`}>{rank.cost}</Badge>
+                </div>
                 <ul className="space-y-2">
                   {rank.perks.map((perk, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm" data-testid={`item-rank-perk-${index}-${i}`}>
-                      <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground" data-testid={`text-rank-perk-${index}-${i}`}>
+                      <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
                       <span>{perk}</span>
                     </li>
                   ))}
@@ -797,7 +827,7 @@ function RanksSection() {
 
 function PlayingSection() {
   return (
-    <section id="playing" className="py-16 md:py-24" data-testid="section-playing">
+    <section id="playing" className="py-16 md:py-24 bg-muted/30" data-testid="section-playing">
       <div className="container mx-auto px-6 lg:pr-72">
         <div className="flex items-center gap-3 mb-8">
           <div className="p-2 bg-primary/20 rounded-md">
@@ -805,100 +835,56 @@ function PlayingSection() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-playing">Playing Minecraft on 369-MC</h2>
         </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className="hover-elevate" data-testid="card-getting-started">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-gradient-green" data-testid="text-getting-started-title">Getting Started</h3>
-              <ul className="space-y-3">
-                {[
-                  "Spawn in our beautiful hub area",
-                  "Read the rules at spawn",
-                  "Use /rtp to find a random location",
-                  "Claim your land with /claim",
-                  "Start building your base!",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3" data-testid={`item-getting-started-${index}`}>
-                    <ChevronRight className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-elevate" data-testid="card-commands">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-gradient-purple" data-testid="text-commands-title">Essential Commands</h3>
-              <ul className="space-y-3">
-                {[
-                  { cmd: "/spawn", desc: "Teleport to spawn" },
-                  { cmd: "/rtp", desc: "Random teleport" },
-                  { cmd: "/tpa <player>", desc: "Request teleport" },
-                  { cmd: "/sethome [name]", desc: "Set a home" },
-                  { cmd: "/home [name]", desc: "Teleport to home" },
-                  { cmd: "/shop", desc: "Open shop" },
-                  { cmd: "/sell", desc: "Sell hand item" },
-                  { cmd: "/ah", desc: "Auction House" },
-                  { cmd: "/team create", desc: "Create a team" },
-                  { cmd: "/rank", desc: "Rank upgrades" },
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3" data-testid={`item-command-${index}`}>
-                    <code className="text-primary font-mono text-sm bg-primary/10 px-2 py-1 rounded" data-testid={`code-command-${index}`}>{item.cmd}</code>
-                    <span className="text-muted-foreground">{item.desc}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+        <div className="prose prose-invert max-w-none">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Experience Minecraft like never before. Our server offers a unique blend of survival gameplay with custom features that enhance your experience.
+            Whether you are a builder, explorer, or fighter, there is something for everyone. Join our community today and start your adventure!
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-function ServerIPSection({ onJoinClick, serverInfo }: { onJoinClick: () => void; serverInfo: ServerInfo }) {
+function ServerIPSection({ serverInfo }: { serverInfo: ServerInfo }) {
   const { toast } = useToast();
 
-  const copyIP = async () => {
+  const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(serverInfo.ip);
-      toast({ title: "Copied!", description: "Server IP copied to clipboard" });
+      await navigator.clipboard.writeText(text);
+      toast({
+        title: "Copied!",
+        description: "Server IP copied to clipboard",
+      });
     } catch {
-      toast({ title: "Failed to copy", variant: "destructive" });
+      toast({
+        title: "Failed to copy",
+        description: "Please copy manually",
+        variant: "destructive",
+      });
     }
   };
 
   return (
-    <section id="server-ip" className="py-16 md:py-24 bg-muted/30" data-testid="section-server-ip">
+    <section id="server-ip" className="py-16 md:py-24" data-testid="section-server-ip">
       <div className="container mx-auto px-6 lg:pr-72">
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-primary/20 rounded-md">
-            <Server className="h-6 w-6 text-primary" />
+          <div className="p-2 bg-chart-2/20 rounded-md">
+            <Server className="h-6 w-6 text-chart-2" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-server-ip">Server IP</h2>
         </div>
-
-        <Card className="border-primary/30 glow-green" data-testid="card-server-ip">
-          <CardContent className="p-8 text-center">
-            <p className="text-muted-foreground mb-4" data-testid="text-ip-prompt">Ready to join? Use the IP address below:</p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <div className="px-6 py-4 bg-muted rounded-md font-mono text-2xl md:text-3xl font-bold text-primary" data-testid="text-ip-display">
+        <Card className="bg-card/50 backdrop-blur border-primary/20">
+          <CardContent className="p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-lg text-muted-foreground mb-2">Connect with IP:</p>
+              <code className="text-2xl md:text-3xl font-mono font-bold text-primary bg-muted px-4 py-2 rounded-md block">
                 {serverInfo.ip}
-              </div>
-              <Button size="icon" variant="outline" onClick={copyIP} data-testid="button-copy-ip-section">
-                <Copy className="h-5 w-5" />
-              </Button>
+              </code>
             </div>
-
-            <p className="text-sm text-muted-foreground mb-6" data-testid="text-bedrock-info">
-              Bedrock players: Use the same IP with port <span className="text-chart-2 font-mono font-bold">{serverInfo.bedrockPort}</span>
-            </p>
-
-            <Button size="lg" onClick={onJoinClick} className="glow-green" data-testid="button-view-details">
-              <Info className="mr-2 h-5 w-5" />
-              View Full Server Details
+            <Button size="lg" onClick={() => copyToClipboard(serverInfo.ip)} className="glow-green">
+              <Copy className="mr-2 h-5 w-5" />
+              Copy IP
             </Button>
           </CardContent>
         </Card>
@@ -907,29 +893,21 @@ function ServerIPSection({ onJoinClick, serverInfo }: { onJoinClick: () => void;
   );
 }
 
-function FAQsSection() {
+function FAQSection() {
   return (
-    <section id="faqs" className="py-16 md:py-24" data-testid="section-faqs">
+    <section id="faqs" className="py-16 md:py-24 bg-muted/30" data-testid="section-faqs">
       <div className="container mx-auto px-6 lg:pr-72">
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-chart-3/20 rounded-md">
-            <HelpCircle className="h-6 w-6 text-chart-3" />
+          <div className="p-2 bg-primary/20 rounded-md">
+            <HelpCircle className="h-6 w-6 text-primary" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-faqs">Frequently Asked Questions</h2>
         </div>
-
-        <Accordion type="single" collapsible className="space-y-3" data-testid="accordion-faqs">
+        <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`faq-${index}`}
-              className="bg-card border border-border rounded-md px-4 hover-elevate"
-              data-testid={`accordion-item-faq-${index}`}
-            >
-              <AccordionTrigger className="text-left hover:no-underline py-4" data-testid={`accordion-trigger-faq-${index}`}>
-                <span className="font-semibold" data-testid={`text-faq-question-${index}`}>{faq.question}</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-4" data-testid={`text-faq-answer-${index}`}>
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-lg font-medium">{faq.question}</AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -940,59 +918,41 @@ function FAQsSection() {
   );
 }
 
-function Footer({ onJoinClick }: { onJoinClick: () => void }) {
+function Footer() {
   return (
-    <footer className="bg-card border-t border-border" data-testid="footer">
-      <div className="h-1 bg-gradient-to-r from-primary via-chart-2 to-primary" />
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div data-testid="footer-about">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-chart-2 rounded-md flex items-center justify-center">
-                <span className="font-bold text-white">369</span>
-              </div>
-              <span className="text-xl font-bold" data-testid="text-footer-logo">369-MC SMP</span>
+    <footer className="bg-card border-t border-border py-12">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="col-span-2">
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+              <span className="text-xl font-bold text-gradient-main">369-MC SMP</span>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-footer-description">
-              The ultimate Minecraft survival multiplayer experience.
-              Join our community and start your adventure today.
+            <p className="text-muted-foreground max-w-sm">
+              The ultimate Minecraft survival experience. Join our community today and start your adventure!
             </p>
           </div>
-
-          <div data-testid="footer-links">
+          <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {["Server Info", "How to Join", "Features", "FAQs"].map((link, i) => (
-                <li key={i}>
-                  <a
-                    href={`#${link.toLowerCase().replace(/ /g, "-")}`}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                    data-testid={`link-footer-${link.toLowerCase().replace(/ /g, "-")}`}
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-primary transition-colors">Home</a></li>
+              <li><a href="#shop" className="hover:text-primary transition-colors">Store</a></li>
+              <li><a href="#features" className="hover:text-primary transition-colors">Features</a></li>
+              <li><a href="/blog" className="hover:text-primary transition-colors">Read our Blog</a></li>
             </ul>
           </div>
-
-          <div data-testid="footer-join">
-            <h3 className="font-semibold mb-4">Join Now</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2" data-testid="footer-status">
-                <div className="w-2 h-2 bg-status-online rounded-full animate-pulse" />
-                <span className="text-sm text-muted-foreground">Server Online</span>
-              </div>
-              <Button onClick={onJoinClick} className="w-full" data-testid="button-join-footer">
-                <Play className="mr-2 h-4 w-4" />
-                Join Server
-              </Button>
-            </div>
+          <div>
+            <h3 className="font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/contact" className="hover:text-primary transition-colors">Contact Us</a></li>
+            </ul>
           </div>
         </div>
-
-        <div className="mt-12 pt-6 border-t border-border text-center text-sm text-muted-foreground" data-testid="footer-copyright">
-          <p>2024 369-MC SMP. All rights reserved. Not affiliated with Mojang Studios.</p>
+        <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} 369-MC SMP. All rights reserved.</p>
+          <p className="mt-2">Not affiliated with Mojang Studios.</p>
         </div>
       </div>
     </footer>
@@ -1000,75 +960,69 @@ function Footer({ onJoinClick }: { onJoinClick: () => void }) {
 }
 
 export default function Home() {
-  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("server-info");
-  const sectionVisibility = useRef<Record<string, number>>({});
 
-  const { data: serverInfo, isLoading } = useQuery<ServerInfo>({
-    queryKey: ["/api/server-info"],
+  const { data: serverInfo = defaultServerInfo, isLoading } = useQuery({
+    queryKey: ["serverInfo"],
+    queryFn: async () => {
+      try {
+        const response = await fetch("/api/server-info");
+        if (!response.ok) return defaultServerInfo;
+        return response.json();
+      } catch (error) {
+        console.error("Failed to fetch server info:", error);
+        return defaultServerInfo;
+      }
+    },
   });
 
-  const currentServerInfo = serverInfo || defaultServerInfo;
-
   useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        sectionVisibility.current[entry.target.id] = entry.isIntersecting ? entry.intersectionRatio : 0;
-      });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
-      let mostVisibleSection = "";
-      let maxRatio = 0;
-
-      Object.entries(sectionVisibility.current).forEach(([id, ratio]) => {
-        if (ratio > maxRatio) {
-          maxRatio = ratio;
-          mostVisibleSection = id;
-        }
-      });
-
-      if (mostVisibleSection) {
-        setActiveSection(mostVisibleSection);
-      }
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
-      rootMargin: "-10% 0px -60% 0px",
-    });
-
-    tableOfContents.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
-      }
+    document.querySelectorAll("section[id]").forEach((section) => {
+      observer.observe(section);
     });
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="min-h-screen bg-background" data-testid="page-home">
-      <TableOfContents activeSection={activeSection} />
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
       <JoinServerModal
-        open={joinModalOpen}
-        onOpenChange={setJoinModalOpen}
-        serverInfo={currentServerInfo}
+        open={isJoinModalOpen}
+        onOpenChange={setIsJoinModalOpen}
+        serverInfo={serverInfo}
       />
 
-      <HeroSection onJoinClick={() => setJoinModalOpen(true)} serverInfo={currentServerInfo} />
-      <ShopSection />
-      <ServerInfoSection serverInfo={currentServerInfo} isLoading={isLoading} />
-      <ScreenshotsSection />
-      <WhatIsSection />
-      <WhoStartedSection />
-      <HowToJoinSection onJoinClick={() => setJoinModalOpen(true)} />
-      <WhyJoinSection />
-      <FeaturesSection />
-      <RanksSection />
-      <PlayingSection />
-      <ServerIPSection onJoinClick={() => setJoinModalOpen(true)} serverInfo={currentServerInfo} />
-      <FAQsSection />
-      <Footer onJoinClick={() => setJoinModalOpen(true)} />
+      <TableOfContents activeSection={activeSection} />
+
+      <main className="relative">
+        <HeroSection onJoinClick={() => setIsJoinModalOpen(true)} serverInfo={serverInfo} />
+        <ServerInfoSection serverInfo={serverInfo} isLoading={isLoading} />
+        <ShopSection />
+        <ScreenshotsSection />
+        <WhatIsSection />
+        <WhoStartedSection />
+        <HowToJoinSection onJoinClick={() => setIsJoinModalOpen(true)} />
+        <WhyJoinSection />
+        <FeaturesSection />
+        <RanksSection />
+        <PlayingSection />
+        <ServerIPSection serverInfo={serverInfo} />
+        <FAQSection />
+      </main>
+
+      <Footer />
     </div>
   );
 }

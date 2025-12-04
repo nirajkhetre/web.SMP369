@@ -1,0 +1,153 @@
+
+> rest-express@1.0.0 build
+> tsx script/build.ts
+
+building client...
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+
+/grid.svg referenced in /grid.svg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+[32m✓[39m 21 modules transformed.
+[31mx[39m Build failed in 2.83s
+[31m[vite:esbuild] Transform failed with 1 error:
+C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog.tsx:2:23: ERROR: Expected ";" but found "className"[39m
+file: [36mC:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog.tsx:2:23[39m
+[33m
+[33mExpected ";" but found "className"[33m
+1  |                      <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">369-MC SMP Blog</h1>
+2  |                      <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+   |                         ^
+3  |                          Latest news, guides, and updates from the world of 369-MC SMP.
+4  |                      </p>
+[39m
+    at failureErrorWithLog (C:\Users\khetr\Documents\PlayGround\Projects\SMP369\BlockyHub\BlockyHub\node_modules\vite\node_modules\esbuild\lib\main.js:1472:15)
+    at C:\Users\khetr\Documents\PlayGround\Projects\SMP369\BlockyHub\BlockyHub\node_modules\vite\node_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\Users\khetr\Documents\PlayGround\Projects\SMP369\BlockyHub\BlockyHub\node_modules\vite\node_modules\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (C:\Users\khetr\Documents\PlayGround\Projects\SMP369\BlockyHub\BlockyHub\node_modules\vite\node_modules\esbuild\lib\main.js:677:12)
+    at Socket.readFromStdout (C:\Users\khetr\Documents\PlayGround\Projects\SMP369\BlockyHub\BlockyHub\node_modules\vite\node_modules\esbuild\lib\main.js:600:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
+  errors: [Getter/Setter],
+  warnings: [Getter/Setter],
+  frame: '\n' +
+    '\x1B[33mExpected ";" but found "className"\x1B[39m\n' +
+    '1  |                      <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">369-MC SMP Blog</h1>\n' +
+    '2  |                      <p className="text-xl text-muted-foreground max-w-2xl mx-auto">\n' +
+    '   |                         ^\n' +
+    '3  |                          Latest news, guides, and updates from the world of 369-MC SMP.\n' +
+    '4  |                      </p>\n',
+  loc: {
+    column: 23,
+    file: 'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog.tsx',
+    length: 9,
+    line: 2,
+    lineText: '                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">',
+    namespace: '',
+    suggestion: ';'
+  },
+  code: 'PLUGIN_ERROR',
+  plugin: 'vite:esbuild',
+  hook: 'transform',
+  id: 'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog.tsx',
+  watchFiles: [
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/index.html',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/main.tsx',
+    'C:\\Users\\khetr\\Documents\\PlayGround\\Projects\\SMP369\\BlockyHub\\BlockyHub\\package.json',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/index.css',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/App.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react-dom/client.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react/jsx-runtime.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/hooks/use-toast.ts',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/lib/blog-data.ts',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/lib/queryClient.ts',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/lib/utils.ts',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/seo.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/shop-section.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/hooks/use-mobile.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/about.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog-post.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/blog.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/contact.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/home.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/not-found.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/privacy-policy.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/rank-shop.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/pages/terms.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/accordion.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/alert-dialog.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/alert.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/aspect-ratio.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/avatar.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/badge.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/breadcrumb.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/button.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/calendar.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/card.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/carousel.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/chart.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/checkbox.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/collapsible.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/command.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/context-menu.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/dialog.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/drawer.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/dropdown-menu.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/form.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/hover-card.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/input-otp.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/input.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/label.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/menubar.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/navigation-menu.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/pagination.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/popover.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/progress.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/radio-group.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/resizable.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/scroll-area.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/select.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/separator.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/sheet.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/sidebar.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/skeleton.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/slider.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/switch.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/table.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/tabs.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/textarea.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/toast.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/toaster.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/toggle-group.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/toggle.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/client/src/components/ui/tooltip.tsx',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/tailwind.config.ts',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react/cjs/react-jsx-runtime.production.min.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react-dom/index.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react-helmet-async/lib/index.esm.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/index.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/wouter/esm/index.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react/index.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/react-dom/cjs/react-dom.production.min.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/types.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/query-core/build/modern/index.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useQueries.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/queryOptions.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/useIsFetching.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js',
+    'C:/Users/khetr/Documents/PlayGround/Projects/SMP369/BlockyHub/BlockyHub/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js'
+  ]
+}

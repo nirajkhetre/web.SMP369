@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://play.smp369.online/sitemap.xml

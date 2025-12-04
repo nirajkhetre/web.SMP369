@@ -1,0 +1,10 @@
+client/src/pages/home.tsx(3,24): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+client/src/pages/home.tsx(4,35): error TS2307: Cannot find module '@/components/ui/card' or its corresponding type declarations.
+client/src/pages/home.tsx(5,23): error TS2307: Cannot find module '@/components/ui/badge' or its corresponding type declarations.
+client/src/pages/home.tsx(6,26): error TS2307: Cannot find module '@/components/ui/skeleton' or its corresponding type declarations.
+client/src/pages/home.tsx(7,29): error TS2307: Cannot find module '@/components/shop-section' or its corresponding type declarations.
+client/src/pages/home.tsx(13,8): error TS2307: Cannot find module '@/components/ui/dialog' or its corresponding type declarations.
+client/src/pages/home.tsx(19,8): error TS2307: Cannot find module '@/components/ui/accordion' or its corresponding type declarations.
+client/src/pages/home.tsx(26,8): error TS2307: Cannot find module '@/components/ui/carousel' or its corresponding type declarations.
+client/src/pages/home.tsx(27,26): error TS2307: Cannot find module '@/hooks/use-toast' or its corresponding type declarations.
+client/src/pages/home.tsx(60,21): error TS2307: Cannot find module '@/components/seo' or its corresponding type declarations.

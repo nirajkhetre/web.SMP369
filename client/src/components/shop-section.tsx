@@ -61,10 +61,10 @@ export function ShopSection() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     username: finalUsername,
-                    rank: "VIP",
+                    rank: "Rank Unlocker",
                     orderId: mockOrderId,
                     paymentId: mockPaymentId,
-                    amount: 99,
+                    amount: 49,
                 }),
             });
 
@@ -72,7 +72,7 @@ export function ShopSection() {
                 setPaymentSuccess(true);
                 toast({
                     title: "Payment Successful!",
-                    description: `VIP rank activated for ${finalUsername}`,
+                    description: `Rank Unlocker activated for ${finalUsername}`,
                 });
             } else {
                 const errorData = await response.json();
@@ -108,7 +108,7 @@ export function ShopSection() {
                             </div>
                             <CardTitle className="text-2xl text-green-500">Purchase Successful!</CardTitle>
                             <CardDescription className="text-gray-400">
-                                Thank you! Your VIP rank has been activated.
+                                Thank you! Your Rank Unlocker has been activated.
                             </CardDescription>
                         </CardHeader>
                         <CardFooter className="justify-center">
@@ -148,11 +148,11 @@ export function ShopSection() {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     {/* Product Info */}
                     <div className="space-y-6">
-                        <div className="relative aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/50 group">
+                        <div className="relative w-full h-auto rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/50 group">
                             <img
-                                src="/369MC (1).png"
-                                alt="VIP Rank"
-                                className="w-full h-full object-contain p-8 transition-transform duration-500 group-hover:scale-105"
+                                src="/RankUnlocker.png"
+                                alt="Rank Unlocker"
+                                className="w-full h-auto p-4 transition-transform duration-500 group-hover:scale-105"
                             />
                             <div className="absolute top-4 right-4">
                                 <span className="px-3 py-1 rounded-full bg-blue-500 text-white text-sm font-bold shadow-lg shadow-blue-500/20">
@@ -162,19 +162,21 @@ export function ShopSection() {
                         </div>
 
                         <div className="space-y-4">
-                            <h3 className="text-2xl font-bold text-white">VIP Rank <span className="text-blue-500">Lifetime</span></h3>
+                            <h3 className="text-2xl font-bold text-white">Rank Unlocker <span className="text-blue-500">One-Time</span></h3>
                             <p className="text-zinc-400 leading-relaxed">
-                                Unlock exclusive perks and stand out from the crowd with the VIP rank.
-                                Get priority access, unique cosmetics, and gameplay boosters that enhance your survival experience.
+                                Purchase the <strong>Rank Unlocker</strong> to instantly unlock the <strong>Novice</strong> rank.
+                                From there, your journey is in your hands! Complete in-game tasks, mine ores, and play to reach the top ranks.
+                                <br /><br />
+                                <span className="text-sm italic text-zinc-500">Note: This is not pay-to-win. You buy the entry ticket, but you earn the glory.</span>
                             </p>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
-                                    "Priority Queue Access",
-                                    "Exclusive Chat Color",
-                                    "5x Home Set Points",
-                                    "/fly in Lobby",
-                                    "Custom Death Messages",
-                                    "Keep XP on Death"
+                                    "Unlocks Novice Rank",
+                                    "Start Your Journey",
+                                    "Fair Progression System",
+                                    "Support the Server",
+                                    "One-Time Purchase",
+                                    "Instant Activation"
                                 ].map((perk, i) => (
                                     <div key={i} className="flex items-center gap-2 text-sm text-zinc-300">
                                         <CheckCircle2 className="h-4 w-4 text-blue-500 flex-shrink-0" />
@@ -234,11 +236,11 @@ export function ShopSection() {
                             <div className="pt-4 border-t border-zinc-800">
                                 <div className="flex justify-between items-center mb-4 text-sm">
                                     <span className="text-zinc-400">Subtotal</span>
-                                    <span className="text-white">₹99.00</span>
+                                    <span className="text-white">₹49.00</span>
                                 </div>
                                 <div className="flex justify-between items-center mb-6 text-lg font-bold">
                                     <span className="text-white">Total</span>
-                                    <span className="text-blue-400">₹99.00</span>
+                                    <span className="text-blue-400">₹49.00</span>
                                 </div>
 
                                 <Button
@@ -254,7 +256,7 @@ export function ShopSection() {
                                     ) : (
                                         <>
                                             <SiRazorpay className="mr-2 h-5 w-5" />
-                                            Simulate Pay ₹99
+                                            Pay ₹49
                                         </>
                                     )}
                                 </Button>

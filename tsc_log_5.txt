@@ -1,0 +1,1 @@
+client/src/pages/blog-post.tsx(8,21): error TS2724: '"@/lib/blog-data"' has no exported member named 'getBlogPost'. Did you mean 'BlogPost'?

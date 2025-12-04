@@ -56,7 +56,7 @@ export function ShopSection() {
             const mockPaymentId = "simulated_pay_" + Date.now();
             const mockOrderId = "simulated_order_" + Date.now();
 
-            const response = await fetch("/api/simulate-payment", {
+            const response = await fetch("https://nikaixeqpk.execute-api.us-east-1.amazonaws.com/default/paymentUpdateHandler", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -68,6 +68,15 @@ export function ShopSection() {
                 }),
             });
 
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                console.warn("Response was not JSON:", responseText);
+                data = { message: responseText || "No response from server" };
+            }
+
             if (response.ok) {
                 setPaymentSuccess(true);
                 toast({
@@ -75,8 +84,7 @@ export function ShopSection() {
                     description: `Rank Unlocker activated for ${finalUsername}`,
                 });
             } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Failed to update rank");
+                throw new Error(data.message || (typeof data === 'string' ? data : "Failed to update rank"));
             }
         } catch (error: any) {
             console.error("Payment Error:", error);

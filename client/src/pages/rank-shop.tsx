@@ -58,6 +58,15 @@ export default function RankShop() {
                 }),
             });
 
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                console.warn("Response was not JSON:", responseText);
+                data = { message: responseText || "No response from server" };
+            }
+
             if (response.ok) {
                 setPaymentSuccess(true);
                 toast({
@@ -65,8 +74,7 @@ export default function RankShop() {
                     description: "Your VIP rank has been unlocked.",
                 });
             } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Failed to update rank");
+                throw new Error(data.message || (typeof data === 'string' ? data : "Failed to update rank"));
             }
         } catch (error: any) {
             console.error("Payment Error:", error);

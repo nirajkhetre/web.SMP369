@@ -79,5 +79,10 @@ export async function registerRoutes(
     }
   });
 
+  // Catch-all 404 handler for API routes
+  app.use("/api/*", (_req, res) => {
+    res.status(404).json({ message: "Not Found" });
+  });
+
   return httpServer;
 }

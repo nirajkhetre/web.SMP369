@@ -62,5 +62,4 @@ export const errorHandler = (err: any, _req: Request, res: Response, _next: Next
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
 };

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ShopSection } from "@/components/shop-section";
 import {
   Dialog,
   DialogContent,
@@ -46,6 +47,7 @@ import {
   Sparkles,
   Menu,
   X,
+  ShoppingCart,
 } from "lucide-react";
 
 interface ServerInfo {
@@ -78,7 +80,7 @@ const defaultServerInfo: ServerInfo = {
   lastUpdated: "December 2024",
   category: "Survival Multiplayer (SMP)",
   location: "Asia-Pacific",
-  features: ["Land Claims", "Economy System", "Custom Enchants", "Events", "PvP Arenas", "Community Builds"],
+  features: ["Lobby System", "RTP", "Combat Tag", "Economy & Shop", "Teams", "Custom Spawners", "Rank Progression"],
   rating: 4.8,
   status: "online",
   playerCount: 47,
@@ -86,24 +88,27 @@ const defaultServerInfo: ServerInfo = {
 
 const tableOfContents = [
   { id: "server-info", title: "Server Info", icon: Info },
+  { id: "shop", title: "Rank Shop", icon: ShoppingCart },
   { id: "screenshots", title: "Screenshots", icon: Image },
   { id: "what-is", title: "What is 369-MC SMP?", icon: HelpCircle },
   { id: "who-started", title: "Who Started 369-MC SMP?", icon: Crown },
   { id: "how-to-join", title: "How to Join", icon: Play },
   { id: "why-join", title: "Why Should You Join?", icon: Heart },
   { id: "features", title: "Features and Games", icon: Gamepad2 },
+  { id: "ranks", title: "Rank Progression", icon: Trophy },
   { id: "playing", title: "Playing Minecraft on 369-MC", icon: Swords },
   { id: "server-ip", title: "Server IP", icon: Server },
   { id: "faqs", title: "FAQs", icon: HelpCircle },
 ];
 
 const features = [
-  { icon: Shield, title: "Land Protection", description: "Claim and protect your builds from griefers" },
-  { icon: Zap, title: "Custom Enchants", description: "Unique enchantments to power up your gear" },
-  { icon: Users, title: "Active Community", description: "Join hundreds of friendly players" },
-  { icon: Trophy, title: "Weekly Events", description: "Compete in exciting server events" },
-  { icon: Mountain, title: "Custom Terrain", description: "Explore beautiful custom-generated worlds" },
-  { icon: Swords, title: "PvP Arenas", description: "Test your skills in dedicated battle zones" },
+  { icon: Shield, title: "Lobby System", description: "Protected hub with launchpads and no hunger/damage" },
+  { icon: MapIcon, title: "RTP System", description: "Random Teleport to find safe spots in the wild" },
+  { icon: Swords, title: "Combat System", description: "Fair PVP with anti-combat logging and tagging" },
+  { icon: Zap, title: "Economy & Shop", description: "Player shops, Auction House, and server economy" },
+  { icon: Users, title: "Teams", description: "Create teams, invite friends, and manage alliances" },
+  { icon: Trophy, title: "Rank Progression", description: "Mine ores to rank up - not just pay to win!" },
+  { icon: Star, title: "Custom Spawners", description: "Upgradable spawners with internal storage and custom loot" },
 ];
 
 const faqs = [
@@ -140,12 +145,12 @@ const screenshots = [
   { title: "Custom Terrain", description: "Explore unique landscapes" },
 ];
 
-function JoinServerModal({ 
-  open, 
-  onOpenChange, 
-  serverInfo 
-}: { 
-  open: boolean; 
+function JoinServerModal({
+  open,
+  onOpenChange,
+  serverInfo
+}: {
+  open: boolean;
   onOpenChange: (open: boolean) => void;
   serverInfo: ServerInfo;
 }) {
@@ -184,7 +189,7 @@ function JoinServerModal({
             Join 369-MC SMP
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6 py-4">
           <div className="grid gap-4">
             <div className="p-4 rounded-md bg-muted/50 border border-border" data-testid="section-java-ip">
@@ -275,11 +280,10 @@ function JoinServerModal({
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-4 w-4 ${
-                    i < Math.floor(serverInfo.rating)
-                      ? "text-chart-3 fill-chart-3"
-                      : "text-muted-foreground"
-                  }`}
+                  className={`h-4 w-4 ${i < Math.floor(serverInfo.rating)
+                    ? "text-chart-3 fill-chart-3"
+                    : "text-muted-foreground"
+                    }`}
                   data-testid={`star-rating-${i}`}
                 />
               ))}
@@ -307,9 +311,8 @@ function TableOfContents({ activeSection }: { activeSection: string }) {
       </button>
 
       <nav
-        className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
-          isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 lg:translate-x-0 lg:opacity-100"
-        }`}
+        className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 lg:translate-x-0 lg:opacity-100"
+          }`}
         data-testid="nav-table-of-contents"
         aria-label="Table of contents"
       >
@@ -325,11 +328,10 @@ function TableOfContents({ activeSection }: { activeSection: string }) {
                   <a
                     href={`#${item.id}`}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all hover-elevate ${
-                      activeSection === item.id
-                        ? "bg-primary/20 text-primary border-l-2 border-primary"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all hover-elevate ${activeSection === item.id
+                      ? "bg-primary/20 text-primary border-l-2 border-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                      }`}
                     data-testid={`link-toc-${item.id}`}
                     aria-current={activeSection === item.id ? "true" : undefined}
                   >
@@ -351,7 +353,7 @@ function HeroSection({ onJoinClick, serverInfo }: { onJoinClick: () => void; ser
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-grid-pattern" data-testid="section-hero">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-      
+
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-chart-2/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
@@ -362,7 +364,7 @@ function HeroSection({ onJoinClick, serverInfo }: { onJoinClick: () => void; ser
           <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl rotate-6 opacity-50" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary to-chart-2 rounded-2xl -rotate-3 opacity-75" />
           <div className="relative w-full h-full bg-card rounded-2xl flex items-center justify-center border border-primary/30 glow-green">
-            <span className="text-5xl font-bold text-gradient-main" data-testid="text-logo">369</span>
+            <img src="/logo.png" alt="369-MC Logo" className="w-full h-full object-contain p-2" data-testid="image-logo" />
           </div>
         </div>
 
@@ -375,9 +377,9 @@ function HeroSection({ onJoinClick, serverInfo }: { onJoinClick: () => void; ser
         </p>
 
         <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed" data-testid="text-description">
-          Welcome to 369-MC SMP, the ultimate Minecraft survival multiplayer server where adventure awaits around every corner. 
-          Build incredible structures, form alliances with fellow players, explore vast custom terrains, and create memories 
-          that last a lifetime. With our dedicated community, regular events, and unique features, your Minecraft journey 
+          Welcome to 369-MC SMP, the ultimate Minecraft survival multiplayer server where adventure awaits around every corner.
+          Build incredible structures, form alliances with fellow players, explore vast custom terrains, and create memories
+          that last a lifetime. With our dedicated community, regular events, and unique features, your Minecraft journey
           starts here.
         </p>
 
@@ -501,9 +503,8 @@ function ServerInfoSection({ serverInfo, isLoading }: { serverInfo: ServerInfo; 
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-5 w-5 ${
-                    i < Math.floor(serverInfo.rating) ? "text-chart-3 fill-chart-3" : "text-muted"
-                  }`}
+                  className={`h-5 w-5 ${i < Math.floor(serverInfo.rating) ? "text-chart-3 fill-chart-3" : "text-muted"
+                    }`}
                   data-testid={`star-info-${i}`}
                 />
               ))}
@@ -566,13 +567,13 @@ function WhatIsSection() {
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           <div className="space-y-4">
             <p className="text-lg text-muted-foreground leading-relaxed" data-testid="text-what-is-1">
-              369-MC SMP is a premium Minecraft Survival Multiplayer server designed for players who seek an authentic 
-              yet enhanced survival experience. We combine the classic Minecraft survival gameplay with carefully 
+              369-MC SMP is a premium Minecraft Survival Multiplayer server designed for players who seek an authentic
+              yet enhanced survival experience. We combine the classic Minecraft survival gameplay with carefully
               curated plugins and features that enhance your adventure without overwhelming the vanilla feel.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed" data-testid="text-what-is-2">
-              Our server runs on the latest Minecraft version and supports both Java and Bedrock Edition players, 
-              ensuring everyone can join the fun regardless of their platform. With a focus on community building, 
+              Our server runs on the latest Minecraft version and supports both Java and Bedrock Edition players,
+              ensuring everyone can join the fun regardless of their platform. With a focus on community building,
               fair play, and exciting events, 369-MC SMP offers something for every type of player.
             </p>
           </div>
@@ -619,14 +620,14 @@ function WhoStartedSection() {
               <div>
                 <h3 className="text-2xl font-bold mb-2 text-gradient-gold" data-testid="text-owner-name">369 Gaming</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4" data-testid="text-owner-desc-1">
-                  369-MC SMP was founded by 369 Gaming, a passionate group of Minecraft enthusiasts dedicated to 
-                  creating the ultimate survival multiplayer experience. With years of experience running gaming 
-                  communities and a deep love for Minecraft, the team set out to build a server that balances 
+                  369-MC SMP was founded by 369 Gaming, a passionate group of Minecraft enthusiasts dedicated to
+                  creating the ultimate survival multiplayer experience. With years of experience running gaming
+                  communities and a deep love for Minecraft, the team set out to build a server that balances
                   competitive gameplay with a welcoming, friendly atmosphere.
                 </p>
                 <p className="text-muted-foreground leading-relaxed" data-testid="text-owner-desc-2">
-                  The vision behind 369-MC SMP is simple: create a space where players can build, explore, and 
-                  connect without worrying about griefing or unfair advantages. Every feature and rule has been 
+                  The vision behind 369-MC SMP is simple: create a space where players can build, explore, and
+                  connect without worrying about griefing or unfair advantages. Every feature and rule has been
                   carefully designed with the community in mind, making it a server that truly belongs to its players.
                 </p>
               </div>
@@ -751,6 +752,49 @@ function FeaturesSection() {
   );
 }
 
+function RanksSection() {
+  const ranks = [
+    { name: "Novice", cost: "Free", perks: ["2% Shop Discount", "+1 Home", "3% Mining XP Boost"] },
+    { name: "Explorer", cost: "$5,000 + 150 Iron Ore", perks: ["5% Shop Discount", "Reduced RTP Cooldown", "+1 Auction Slot", "10% Spawner Speed Boost"] },
+    { name: "Artisan", cost: "$10,000 + 200 Gold Ore", perks: ["7% Shop Discount", "+2 Homes", "Auto-Smelt Ores", "20% Spawner Speed Boost"] },
+    { name: "Captain", cost: "$20,000 + 300 Redstone Ore", perks: ["10% Shop Discount", "+3 Auction Slots", "-20% Auction Tax", "50% Spawner Speed Boost", "/jump", "/pv 1"] },
+    { name: "Champion", cost: "$35,000 + 150 Diamond Ore", perks: ["15% Shop Discount", "+5 Homes", "-50% Auction Tax", "100% Spawner Speed Boost", "/repair", "Champion Shop"] },
+    { name: "Legend", cost: "$50,000 + 200 Emerald Ore", perks: ["No Auction Tax", "+10 Auction Slots", "Permanent Spawner Boost", "/fly", "/pv 3", "Legend Chat Tag"] },
+  ];
+
+  return (
+    <section id="ranks" className="py-16 md:py-24" data-testid="section-ranks">
+      <div className="container mx-auto px-6 lg:pr-72">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-2 bg-chart-3/20 rounded-md">
+            <Trophy className="h-6 w-6 text-chart-3" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold" data-testid="heading-ranks">Rank Progression</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ranks.map((rank, index) => (
+            <Card key={index} className="hover-elevate border-primary/20" data-testid={`card-rank-${index}`}>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold mb-2 text-primary" data-testid={`text-rank-name-${index}`}>{rank.name}</h3>
+                <p className="text-sm font-mono text-muted-foreground mb-4 bg-muted p-2 rounded" data-testid={`text-rank-cost-${index}`}>{rank.cost}</p>
+                <ul className="space-y-2">
+                  {rank.perks.map((perk, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm" data-testid={`item-rank-perk-${index}-${i}`}>
+                      <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>{perk}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PlayingSection() {
   return (
     <section id="playing" className="py-16 md:py-24" data-testid="section-playing">
@@ -788,11 +832,16 @@ function PlayingSection() {
               <h3 className="text-xl font-semibold mb-4 text-gradient-purple" data-testid="text-commands-title">Essential Commands</h3>
               <ul className="space-y-3">
                 {[
-                  { cmd: "/home", desc: "Teleport to your home" },
-                  { cmd: "/tpa [player]", desc: "Request to teleport" },
-                  { cmd: "/claim", desc: "Claim land protection" },
-                  { cmd: "/balance", desc: "Check your money" },
-                  { cmd: "/help", desc: "View all commands" },
+                  { cmd: "/spawn", desc: "Teleport to spawn" },
+                  { cmd: "/rtp", desc: "Random teleport" },
+                  { cmd: "/tpa <player>", desc: "Request teleport" },
+                  { cmd: "/sethome [name]", desc: "Set a home" },
+                  { cmd: "/home [name]", desc: "Teleport to home" },
+                  { cmd: "/shop", desc: "Open shop" },
+                  { cmd: "/sell", desc: "Sell hand item" },
+                  { cmd: "/ah", desc: "Auction House" },
+                  { cmd: "/team create", desc: "Create a team" },
+                  { cmd: "/rank", desc: "Rank upgrades" },
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3" data-testid={`item-command-${index}`}>
                     <code className="text-primary font-mono text-sm bg-primary/10 px-2 py-1 rounded" data-testid={`code-command-${index}`}>{item.cmd}</code>
@@ -833,7 +882,7 @@ function ServerIPSection({ onJoinClick, serverInfo }: { onJoinClick: () => void;
         <Card className="border-primary/30 glow-green" data-testid="card-server-ip">
           <CardContent className="p-8 text-center">
             <p className="text-muted-foreground mb-4" data-testid="text-ip-prompt">Ready to join? Use the IP address below:</p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
               <div className="px-6 py-4 bg-muted rounded-md font-mono text-2xl md:text-3xl font-bold text-primary" data-testid="text-ip-display">
                 {serverInfo.ip}
@@ -905,7 +954,7 @@ function Footer({ onJoinClick }: { onJoinClick: () => void }) {
               <span className="text-xl font-bold" data-testid="text-footer-logo">369-MC SMP</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-footer-description">
-              The ultimate Minecraft survival multiplayer experience. 
+              The ultimate Minecraft survival multiplayer experience.
               Join our community and start your adventure today.
             </p>
           </div>
@@ -1000,13 +1049,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background" data-testid="page-home">
       <TableOfContents activeSection={activeSection} />
-      <JoinServerModal 
-        open={joinModalOpen} 
-        onOpenChange={setJoinModalOpen} 
+      <JoinServerModal
+        open={joinModalOpen}
+        onOpenChange={setJoinModalOpen}
         serverInfo={currentServerInfo}
       />
-      
+
       <HeroSection onJoinClick={() => setJoinModalOpen(true)} serverInfo={currentServerInfo} />
+      <ShopSection />
       <ServerInfoSection serverInfo={currentServerInfo} isLoading={isLoading} />
       <ScreenshotsSection />
       <WhatIsSection />
@@ -1014,6 +1064,7 @@ export default function Home() {
       <HowToJoinSection onJoinClick={() => setJoinModalOpen(true)} />
       <WhyJoinSection />
       <FeaturesSection />
+      <RanksSection />
       <PlayingSection />
       <ServerIPSection onJoinClick={() => setJoinModalOpen(true)} serverInfo={currentServerInfo} />
       <FAQsSection />

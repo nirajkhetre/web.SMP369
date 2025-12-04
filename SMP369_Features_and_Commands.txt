@@ -1,0 +1,187 @@
+================================================================================
+                                  SMP369
+                     Survival Multiplayer Feature Documentation
+================================================================================
+
+WELCOME TO SMP369!
+This document contains a detailed overview of all features, commands, and mechanics 
+available on the SMP369 server. This guide is intended for players, staff, and 
+promotional use.
+
+--------------------------------------------------------------------------------
+1. CORE SYSTEMS & FEATURES
+--------------------------------------------------------------------------------
+
+[LOBBY SYSTEM]
+The server features a dedicated Lobby world that serves as the central hub.
+- Protection: The Lobby is fully protected. No damage, hunger, PVP, or block breaking allowed.
+- Launchpads: Step on a Golden Pressure Plate to be launched into the air!
+- Weather: Always clear weather in the lobby.
+- Interaction: Doors, trapdoors, and chests are locked to prevent tampering.
+
+[RTP (RANDOM TELEPORT)]
+- Command: /rtp [world]
+- Function: Teleports you to a random location in the survival world to start your adventure.
+- Logic: Finds a safe location (not water/lava) within a configurable radius.
+- Restriction: Cannot be used directly in the Lobby without specifying a world.
+
+[COMBAT SYSTEM]
+- Combat Tag: Engaging in PVP tags you for 20 seconds.
+- Restrictions: While tagged, you cannot use specific commands (e.g., /spawn, /home).
+- Combat Logging: If you disconnect while tagged, you will instantly die, lose your items, 
+  and a lightning strike will mark your death spot. A broadcast will shame the combat logger!
+- Action Bar: A timer shows exactly how long you are tagged.
+
+[ECONOMY & SHOP]
+- Currency: Dollars ($)
+- Shop: A GUI-based shop to buy and sell items.
+- Sell Hand: Quickly sell the item in your hand with /sell.
+- Auction House: Players can list items for sale to others.
+  - Sorting: Sort by Newest, Oldest, Price (Low/High).
+  - Expiry: Auctions expire after a set time (items return to owner).
+- Balance: Check your money with /balance.
+
+[TEAMS]
+- Create your own team and invite friends!
+- Prefix: Team names may appear in chat or scoreboards (depending on config).
+- Management: Invite, Kick, and Disband options available.
+
+--------------------------------------------------------------------------------
+2. RANK PROGRESSION
+--------------------------------------------------------------------------------
+SMP369 features a unique "Item & Money" based rank progression system. You don't just 
+pay money; you need to mine specific ores to prove your worth!
+
+[NOVICE] (Default)
+- Perks: 
+  * 2% Shop Discount
+  * +1 Home
+  * 3% Mining XP Boost
+
+[EXPLORER]
+- Cost: $5,000 + 150 Iron Ore
+- Perks:
+  * 5% Shop Discount
+  * Reduced RTP Cooldown
+  * +1 Auction Slot
+  * 10% Spawner Speed Boost
+
+[ARTISAN]
+- Cost: $10,000 + 200 Gold Ore
+- Perks:
+  * 7% Shop Discount
+  * +2 Homes (Total)
+  * Auto-Smelt Ores (Passive)
+  * 20% Spawner Speed Boost
+
+[CAPTAIN]
+- Cost: $20,000 + 300 Redstone Ore
+- Perks:
+  * 10% Shop Discount
+  * +3 Auction Slots
+  * -20% Auction Tax
+  * 50% Spawner Speed Boost
+  * Access to /jump
+  * Access to /pv 1 (Player Vault)
+
+[CHAMPION]
+- Cost: $35,000 + 150 Diamond Ore
+- Perks:
+  * 15% Shop Discount
+  * +5 Homes
+  * -50% Auction Tax
+  * 100% Spawner Speed Boost (2x Speed!)
+  * Access to /repair
+  * Access to Champion Shop
+
+[LEGEND]
+- Cost: $50,000 + 200 Emerald Ore
+- Perks:
+  * No Auction Tax
+  * +10 Auction Slots
+  * Permanent Spawner Boost
+  * Access to /fly
+  * Access to /pv 3
+  * Exclusive "Legend" Chat Tag
+
+--------------------------------------------------------------------------------
+3. CUSTOM SPAWNERS & LOOT
+--------------------------------------------------------------------------------
+Spawners on SMP369 are upgraded! They have internal storage for XP and Loot, 
+and custom drops for specific mobs.
+
+[MECHANICS]
+- Stacking: Spawners can be stacked to increase efficiency.
+- Storage: Spawners automatically collect XP and Loot. You must click them to collect.
+- Upgrades: Spawner speed increases with your Rank!
+
+[CUSTOM DROPS]
+- Zombie: Rotten Flesh + Iron Ingot (10% chance)
+- Skeleton: Bone + Arrow
+- Spider: String + Spider Eye (30% chance)
+- Cow: Beef
+- Pig: Porkchop
+- Chicken: Chicken + Feather
+- Sheep: Mutton + White Wool
+- Iron Golem: Iron Ingot (3x) + Poppy
+- Witch: Redstone + Glowstone Dust + Sugar
+- Guardian: Prismarine Shard + Crystals
+
+--------------------------------------------------------------------------------
+4. COMMAND REFERENCE
+--------------------------------------------------------------------------------
+
+[GENERAL]
+/spawn          - Teleport to the world spawn.
+/lobby          - Teleport to the lobby.
+/rtp            - Randomly teleport in the survival world.
+/tpa <player>   - Request to teleport to a player.
+/tpahere <player> - Request a player to teleport to you.
+/tpaccept       - Accept a teleport request.
+/tpdeny         - Deny a teleport request.
+/back           - Teleport to your last location (Death/TP).
+
+[HOMES]
+/sethome [name] - Set a home at your current location.
+/home [name]    - Teleport to a specific home.
+/delhome [name] - Delete a home.
+/homes          - List all your homes (GUI).
+
+[ECONOMY]
+/balance        - Check your current balance.
+/pay <player> <amount> - Send money to another player.
+/shop           - Open the server shop.
+/sell           - Sell the item in your hand to the server.
+/ah             - Open the Auction House.
+/ah sell <price> - Sell the item in your hand on the Auction House.
+
+[TEAMS]
+/team create <name> - Create a new team.
+/team invite <player> - Invite a player to your team.
+/team join <name>   - Join a team (requires invite).
+/team leave         - Leave your current team.
+/team info [name]   - View team members and info.
+
+[RANKS]
+/rank           - Open the Rank Upgrade GUI.
+/rank set <player> <rank> - (Admin) Set a player's rank.
+
+[ADMIN]
+/smp369 reload  - Reload the plugin configuration.
+/setspawn       - Set the global spawn point.
+/setlobby       - Set the lobby spawn point.
+/gamemode <mode> - Change gamemode.
+
+--------------------------------------------------------------------------------
+5. PROMOTIONAL HIGHLIGHTS (FOR WEBSITE/ADVERTISING)
+--------------------------------------------------------------------------------
+"Experience Survival Evolved on SMP369!"
+- "Grind for Greatness": Our unique Rank system requires you to mine actual ores to rank up, not just pay cash!
+- "Enhanced Combat": Fair PVP with anti-combat logging and action-bar timers.
+- "Economy Your Way": Player-driven Auction House mixed with a server Shop.
+- "Custom Spawners": Automate your grinding with spawners that collect loot and XP for you!
+- "Safe Start": Use our protected Lobby and RTP system to find the perfect spot to build.
+
+================================================================================
+Generated by SMP369 Documentation Assistant
+================================================================================

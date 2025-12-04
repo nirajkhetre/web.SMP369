@@ -1,5 +1,5 @@
-import { app, httpServer, errorHandler } from "../server/app";
-import { registerRoutes } from "../server/routes";
+import { app, httpServer, errorHandler } from "../server/app.js";
+import { registerRoutes } from "../server/routes.js";
 
 // Lazy initialization to ensure routes are registered only once
 // and to avoid top-level await issues in Vercel Serverless Functions

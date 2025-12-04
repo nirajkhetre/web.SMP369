@@ -968,8 +968,11 @@ export default function Home() {
     queryFn: async () => {
       try {
         const response = await fetch("/api/server-info");
-        if (!response.ok) return defaultServerInfo;
-        return response.json();
+        const contentType = response.headers.get("content-type");
+        if (!response.ok || !contentType || !contentType.includes("application/json")) {
+          return defaultServerInfo;
+        }
+        return await response.json();
       } catch (error) {
         console.error("Failed to fetch server info:", error);
         return defaultServerInfo;
